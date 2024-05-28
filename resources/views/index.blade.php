@@ -89,18 +89,9 @@
             </tr>
 
         </table>
-
-
     </div>
+    
+<script src="{{ asset('js/aws.js') }}"></script>
+
 </body>
-<script>
-    function confirmaExclusao(value) {
-
-        var frm = document.getElementById('form_' + value) || null;
-        if (confirm('Confirma a exclusão do arquivo?')) {
-            frm.submit();
-        }
-    }
-</script>
-
 </html>
