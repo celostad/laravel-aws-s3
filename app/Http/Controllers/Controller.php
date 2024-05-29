@@ -9,7 +9,7 @@ class Controller
 {
     public function index()
     {
-        // $arrFiles = Storage::disk('s3')->allFiles('');
+        $arrFiles = null;
         $arrS3Files = Storage::disk('s3')->files();
         foreach ($arrS3Files as $file) {
             $arrFiles[] = array(

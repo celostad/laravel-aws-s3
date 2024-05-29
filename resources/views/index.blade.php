@@ -9,9 +9,12 @@
     <title>POC - AWS S3</title>
 
     <!-- Fonts -->
+    <link href="{{ asset('css/aws.css') }}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -38,10 +41,10 @@
         <div style="margin-top:50px;"></div>
         <table style="margin:0 auto;border: 1px solid #eee;">
             <tr style="border: 1px solid #eee;font-weight: bolder;">
-                <td style="border: 1px solid #eee;width:250px;">Nome</td>
-                <td style="border: 1px solid #eee;width:100px;">Tipo</td>
-                <td style="border: 1px solid #eee;width:150px">Tamanho</td>
-                <td style="border: 1px solid #eee;width:100px">Ações</td>
+                <td class="row_files_bd w250">Nome</td>
+                <td class="row_files_bd w100">Tipo</td>
+                <td class="row_files_bd w150">Tamanho</td>
+                <td class="row_files_bd w100">Ações</td>
             </tr>
 
             
@@ -58,32 +61,32 @@
 
                 @endphp
                     
-                    <tr>
-                    <td style="border: 1px solid #eee;text-align: left;"><a href="{{@$urlPathFile}}" target="_blank">{{$strFile}}</a></td>
-                    <td style="border: 1px solid #eee;">{{ $strTipo }}</td>
-                    <td style="border: 1px solid #eee;">{{ $strTamanho }}</td>
-                    <td style="border: 1px solid #eee;">
+                    <tr class="h30">
+                    <td class="row_files_bd left"><a href="{{@$urlPathFile}}" target="_blank">{{$strFile}}</a></td>
+                    <td class="row_files_bd">{{ $strTipo }}</td>
+                    <td class="row_files_bd">{{ $strTamanho }}</td>
+                    <td class="row_files_bd">
                         <form id="form_{{$key}}" action="{{route('excluir')}}" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <input type="hidden" name="key" id="key" value="{{ $strFile }}">
-                            <button type="button" onclick="javascript: confirmaExclusao('{{$key}}')" style="background-color:revert">Delete</button>                
+                            <button type="button" onclick="javascript: confirmaExclusao('{{$key}}')" class="btn_delete" style="background-color:revert">Delete</button>                
                         </form>
                     </td>
                 @endforeach
             @else
-                <tr style="text-align:center;">';
-                    <td colspan="5">Não existem registros.</td>
+                <tr class="center">
+                    <td colspan="5"><span style="color:red;"> Não há registros.</span></td>
                 </tr>
             @endif          
 
-            <tr style="border: 1px solid #eee;font-weight: bolder; text-align:center; height:110px;">
+            <tr class="upload row_files_bd">
                 <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <td colspan="3" style="border: 0px solid #eee;height:60px;text-align:right !important;">
+                    <td colspan="3" class="row_files" style="height:60px;text-align:right !important;">
                         <input type="file" id="files" name="image" style="display:inline;" />
                     </td>
-                    <td colspan="2" style="height:60px;text-align:left;">
-                        <input type="submit" style="display:inline;" value="Upload" />
+                    <td colspan="2" class="left" style="height:60px;">
+                        <input type="submit" class="btn_upload" style="display:inline;" value="Upload" />
                     </td>
                 </form>
             </tr>
